@@ -43,9 +43,11 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       backgroundColor: const Color(0xFF4749CD),
       appBar: AppBar(
-        leading: const IconButton(
-          onPressed: null,
-          icon: Icon(
+        leading: IconButton(
+          onPressed: (){
+            print("menu");
+          },
+          icon: const Icon(
             Icons.settings,
             color: Colors.white,
           ),
@@ -71,7 +73,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 });
               },
               icon: Icon(
-                Icons.remove_red_eye,
+                _isPriceVisible ? Icons.visibility_off : Icons.visibility,
                 color: Colors.white,
                 size: displayWidth * 0.07,
               ),
@@ -86,92 +88,90 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         child: ListView(
           children: [
-            Container(
-              child: Stack(
-                clipBehavior: Clip.none,
-                children: [
-                  Positioned(
-                    child: Container(
-                      height: displayHeight * 0.25,
-                      width: displayWidth * 0.7,
-                      child: Image.asset("assets/images/wave_card.png"),
+            Stack(
+              // fit: StackFit.expand,
+              children: [
+                Positioned(
+                  top: 0,
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  child: Container(
+                    // height: constraints.maxHeight,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(displayWidth * 0.08),
+                        topRight: Radius.circular(displayWidth * 0.08),
+                      ),
                     ),
-                  ),
-                  Positioned(
-                    top: 80,
-                    bottom: 0,
-                    child: Container(
-                      // height: displayHeight * 0.7,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(displayWidth * 0.08),
-                          topRight: Radius.circular(displayWidth * 0.08),
+                    width: displayWidth,
+                    padding: EdgeInsets.only(
+                      top: displayHeight * 0.05,
+                    ),
+                    child: Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            HomeOptionWidget(
+                              icon: const Icon(
+                                Bootstrap.person,
+                                color: Colors.white,
+                              ),
+                              title: "Send",
+                              backgroundColor: const Color(0xFF4749CD),
+                              onTap: () {},
+                            ),
+                            HomeOptionWidget(
+                              icon: Icon(
+                                FontAwesome.basket_shopping,
+                              ),
+                              title: "Payments",
+                              backgroundColor: Colors.limeAccent.shade100,
+                              onTap: () {},
+                            ),
+                            HomeOptionWidget(
+                              icon: Icon(
+                                FontAwesome.phone,
+                              ),
+                              title: "Airtime",
+                              backgroundColor: Colors.lightBlue,
+                              onTap: () {},
+                            ),
+                            HomeOptionWidget(
+                              icon: Icon(
+                                Bootstrap.bank,
+                              ),
+                              title: "Bank",
+                              backgroundColor: Colors.redAccent.shade100,
+                              onTap: () {},
+                            ),
+                          ],
                         ),
-                      ),
-                      width: displayWidth,
-                      padding: EdgeInsets.only(
-                        top: displayHeight * 0.05,
-                      ),
-                      child: Column(
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              HomeOptionWidget(
-                                icon: const Icon(
-                                  Bootstrap.person,
-                                  color: Colors.white,
-                                ),
-                                title: "Send",
-                                backgroundColor: const Color(0xFF4749CD),
-                                onTap: () {},
-                              ),
-                              HomeOptionWidget(
-                                icon: Icon(
-                                  FontAwesome.basket_shopping,
-                                ),
-                                title: "Payments",
-                                backgroundColor: Colors.limeAccent.shade100,
-                                onTap: () {},
-                              ),
-                              HomeOptionWidget(
-                                icon: Icon(
-                                  FontAwesome.phone,
-                                ),
-                                title: "Airtime",
-                                backgroundColor: Colors.lightBlue,
-                                onTap: () {},
-                              ),
-                              HomeOptionWidget(
-                                icon: Icon(
-                                  Bootstrap.bank,
-                                ),
-                                title: "Bank",
-                                backgroundColor: Colors.redAccent.shade100,
-                                onTap: () {},
-                              ),
-                            ],
-                          ),
-                          SizedBox(
-                            height: displayHeight * 0.03,
-                          ),
-                          Divider(
-                            color: Colors.grey.shade300,
-                            thickness: displayHeight * 0.01,
-                          ),
-                          SizedBox(
-                            height: displayHeight * 0.01,
-                          ),
-                          ...transactions
-                              .map((e) => TransactionWidget(transaction: e))
-                              .toList(),
-                        ],
-                      ),
+                        SizedBox(
+                          height: displayHeight * 0.03,
+                        ),
+                        Divider(
+                          color: Colors.grey.shade300,
+                          thickness: displayHeight * 0.01,
+                        ),
+                        SizedBox(
+                          height: displayHeight * 0.01,
+                        ),
+                        ...transactions
+                            .map((e) => TransactionWidget(transaction: e))
+                            .toList(),
+                      ],
                     ),
                   ),
-                ],
-              ),
+                ),
+                SizedBox(
+                  height: displayHeight * 0.25,
+                  width: displayWidth * 0.7,
+                  child: Image.asset("assets/images/wave_card.png"),
+                ),
+              ],
             ),
           ],
         ),
