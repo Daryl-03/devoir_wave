@@ -38,13 +38,11 @@ class _HomeScreenState extends State<HomeScreen> {
     final displayWidth = AppLayout.displayWidth(context);
     final displayHeight = AppLayout.displayHeightWithoutAppBar(context);
 
-    print("build");
-
     return Scaffold(
       backgroundColor: const Color(0xFF4749CD),
       appBar: AppBar(
         leading: IconButton(
-          onPressed: (){
+          onPressed: () {
             print("menu");
           },
           icon: const Icon(
@@ -89,87 +87,91 @@ class _HomeScreenState extends State<HomeScreen> {
         child: ListView(
           children: [
             Stack(
-              // fit: StackFit.expand,
               children: [
-                Positioned(
-                  top: 0,
-                  bottom: 0,
-                  left: 0,
-                  right: 0,
-                  child: Container(
-                    // height: constraints.maxHeight,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(displayWidth * 0.08),
-                        topRight: Radius.circular(displayWidth * 0.08),
-                      ),
-                    ),
-                    width: displayWidth,
-                    padding: EdgeInsets.only(
-                      top: displayHeight * 0.05,
-                    ),
-                    child: Column(
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            HomeOptionWidget(
-                              icon: const Icon(
-                                Bootstrap.person,
-                                color: Colors.white,
-                              ),
-                              title: "Send",
-                              backgroundColor: const Color(0xFF4749CD),
-                              onTap: () {},
-                            ),
-                            HomeOptionWidget(
-                              icon: Icon(
-                                FontAwesome.basket_shopping,
-                              ),
-                              title: "Payments",
-                              backgroundColor: Colors.limeAccent.shade100,
-                              onTap: () {},
-                            ),
-                            HomeOptionWidget(
-                              icon: Icon(
-                                FontAwesome.phone,
-                              ),
-                              title: "Airtime",
-                              backgroundColor: Colors.lightBlue,
-                              onTap: () {},
-                            ),
-                            HomeOptionWidget(
-                              icon: Icon(
-                                Bootstrap.bank,
-                              ),
-                              title: "Bank",
-                              backgroundColor: Colors.redAccent.shade100,
-                              onTap: () {},
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: displayHeight * 0.03,
-                        ),
-                        Divider(
-                          color: Colors.grey.shade300,
-                          thickness: displayHeight * 0.01,
-                        ),
-                        SizedBox(
-                          height: displayHeight * 0.01,
-                        ),
-                        ...transactions
-                            .map((e) => TransactionWidget(transaction: e))
-                            .toList(),
-                      ],
+                Container(
+                  // height: double.infinity,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(displayWidth * 0.08),
+                      topRight: Radius.circular(displayWidth * 0.08),
                     ),
                   ),
+                  width: displayWidth,
+                  // constraints: const BoxConstraints(
+                  //   maxHeight: double.infinity,
+                  // ),
+                  margin: EdgeInsets.only(
+                    top: displayHeight * 0.21,
+                  ),
+                  padding: EdgeInsets.only(
+                    top: displayHeight * 0.05,
+                  ),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          HomeOptionWidget(
+                            icon: const Icon(
+                              Bootstrap.person,
+                              color: Colors.white,
+                            ),
+                            title: "Send",
+                            backgroundColor: const Color(0xFF4749CD),
+                            onTap: () {},
+                          ),
+                          HomeOptionWidget(
+                            icon: Icon(
+                              FontAwesome.basket_shopping,
+                            ),
+                            title: "Payments",
+                            backgroundColor: Colors.limeAccent.shade100,
+                            onTap: () {},
+                          ),
+                          HomeOptionWidget(
+                            icon: Icon(
+                              FontAwesome.phone,
+                            ),
+                            title: "Airtime",
+                            backgroundColor: Colors.lightBlue,
+                            onTap: () {},
+                          ),
+                          HomeOptionWidget(
+                            icon: Icon(
+                              Bootstrap.bank,
+                            ),
+                            title: "Bank",
+                            backgroundColor: Colors.redAccent.shade100,
+                            onTap: () {},
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: displayHeight * 0.03,
+                      ),
+                      Divider(
+                        color: Colors.grey.shade300,
+                        thickness: displayHeight * 0.01,
+                      ),
+                      SizedBox(
+                        height: displayHeight * 0.01,
+                      ),
+                      ...transactions
+                          .map((e) => TransactionWidget(transaction: e))
+                          .toList(),
+                    ],
+                  ),
                 ),
-                SizedBox(
-                  height: displayHeight * 0.25,
-                  width: displayWidth * 0.7,
-                  child: Image.asset("assets/images/wave_card.png"),
+                Positioned(
+                  top: displayHeight * 0.01,
+                  left: displayWidth * 0.15,
+                  child: SizedBox(
+                    height: displayHeight * 0.25,
+                    width: displayWidth * 0.7,
+                    child: Image.asset("assets/images/wave_card.png"),
+                  ),
                 ),
               ],
             ),
