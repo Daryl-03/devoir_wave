@@ -9,9 +9,9 @@ class DiskWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final displayWidth = AppLayout.displayWidth(context);
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: displayWidth * 0.01),
-      width: displayWidth * 0.03,
-      height: displayWidth * 0.03,
+      margin: EdgeInsets.only(left: displayWidth * 0.01),
+      width: displayWidth * 0.02,
+      height: displayWidth * 0.02,
       decoration: const BoxDecoration(
         color: Colors.white,
         shape: BoxShape.circle,
